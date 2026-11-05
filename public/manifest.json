@@ -1,0 +1,9 @@
+{
+    "name": "FitZone Gym Membership Management",
+    "short_name": "FitZone",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#101112",
+    "theme_color": "#111111",
+    "description": "Gym membership, payments and attendance management"
+}

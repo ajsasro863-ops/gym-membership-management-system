@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#111">
+    <title>FitZone Gym Management</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div id="login" class="login-wrap">
+    <form id="loginForm" class="login-card">
+        <div class="logo"><b>F</b> FIT<span>ZONE</span></div>
+        <small class="eyebrow">GYM MEMBERSHIP MANAGEMENT</small>
+        <h1>Welcome back</h1>
+        <p class="muted center">Sign in to manage your gym.</p>
+
+        <label>
+            Username
+            <input id="username" required placeholder="Username" autocomplete="username">
+        </label>
+
+        <label>
+            Password
+            <input id="password" type="password" required placeholder="Password" autocomplete="current-password">
+        </label>
+
+        <button class="primary wide">Sign in →</button>
+
+        <p id="loginError" class="error"></p>
+
+        <div class="hint">
+            Demo Admin: <b>admin / admin123</b><br>
+            Demo Staff: <b>staff / staff123</b>
+        </div>
+    </form>
+</div>
+
+<div id="app" class="hidden">
+
+    <aside id="sidebar">
+
+        <div class="logo"><b>F</b> FIT<span>ZONE</span></div>
+
+        <small class="section-label">WORKSPACE</small>
+
+        <nav id="nav">
+            <button class="active" data-page="dashboard">▦ Dashboard</button>
+            <button data-page="members">♙ Members</button>
+            <button data-page="plans">▤ Membership Plans</button>
+            <button data-page="payments">＄ Payments</button>
+            <button data-page="attendance">◷ Attendance</button>
+            <button data-page="notifications">♧ Notifications <i id="alertCount">0</i></button>
+            <button class="admin-only" data-page="reports">▥ Reports</button>
+            <button class="admin-only" data-page="users">♙ User Accounts</button>
+        </nav>
+
+        <div class="userbox">
+            <b id="userName">Admin</b>
+            <small id="userRole">Administrator</small>
+            <button id="logout">↪ Log out</button>
+        </div>
+
+    </aside>
+
+    <main>
+
+        <header>
+            <button id="menu" class="mobile">☰</button>
+
+            <div>
+                <b id="heading">Dashboard</b>
+                <small id="dateLabel"></small>
+            </div>
+
+            <span class="online">● Online</span>
+        </header>
+
+        <div class="content">
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">OVERVIEW</small>
+                        <h1>Good day, <span id="welcome">Admin</span> 👋</h1>
+                        <p class="muted">Here’s what’s happening at your gym today.</p>
+                    </div>
+
+                    <button class="primary" id="dashAdd">＋ Add member</button>
+                </div>
+
+                <div class="stats">
+
+                    <article>
+                        <small>Total members</small>
+                        <strong id="total">0</strong>
+                        <span>Registered members</span>
+                    </article>
+
+                    <article>
+                        <small>Active members</small>
+                        <strong id="active">0</strong>
+                        <span>Current memberships</span>
+                    </article>
+
+                    <article>
+                        <small>Expired memberships</small>
+                        <strong id="expired">0</strong>
+                        <span>Require renewal</span>
+                    </article>
+
+                    <article>
+                        <small>Today's attendance</small>
+                        <strong id="visits">0</strong>
+                        <span>Member check-ins</span>
+                    </article>
+
+                </div>
+
+                <div class="columns">
+
+                    <article class="panel">
+                        <h2>Membership alerts</h2>
+                        <p class="muted">Expired or expiring within 7 days</p>
+                        <div id="alerts"></div>
+                    </article>
+
+                    <article class="panel">
+                        <h2>Quick actions</h2>
+
+                        <div class="quick">
+                            <button id="quickMember">＋ Register member</button>
+                            <button data-go="attendance">◷ Record attendance</button>
+                            <button data-go="payments">＄ Record payment</button>
+                            <button data-go="reports" class="admin-only">▥ View reports</button>
+                        </div>
+                    </article>
+
+                </div>
+
+                <article class="panel">
+                    <h2>Recent members</h2>
+                    <div id="recent"></div>
+                </article>
+
+            </section>
+
+            <!-- MEMBERS -->
+            <section id="members" class="page hidden">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">MEMBER DIRECTORY</small>
+                        <h1>Members</h1>
+                        <p class="muted">Register and manage gym members.</p>
+                    </div>
+
+                    <button class="primary" id="addMember">＋ Add member</button>
+                </div>
+
+                <div class="toolbar">
+                    <input id="memberSearch" placeholder="Search name, email or ID">
+
+                    <select id="memberFilter">
+                        <option value="all">All statuses</option>
+                        <option>Active</option>
+                        <option>Expiring soon</option>
+                        <option>Expired</option>
+                    </select>
+                </div>
+
+                <article class="panel">
+                    <div id="memberTable"></div>
+                </article>
+
+            </section>
+
+            <!-- MEMBERSHIP PLANS -->
+            <section id="plans" class="page hidden">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">PRICING & SUBSCRIPTIONS</small>
+                        <h1>Membership plans</h1>
+                        <p class="muted">Manage available membership plans.</p>
+                    </div>
+
+                    <button class="primary admin-only" id="addPlan">＋ Add plan</button>
+                </div>
+
+                <div id="planGrid" class="plans"></div>
+
+            </section>
+
+            <!-- PAYMENTS -->
+            <section id="payments" class="page hidden">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">TRANSACTIONS</small>
+                        <h1>Payments</h1>
+                        <p class="muted">Record payments and review history.</p>
+                    </div>
+
+                    <button class="primary" id="addPayment">＋ Record payment</button>
+                </div>
+
+                <div class="stats two">
+
+                    <article>
+                        <small>Total collected</small>
+                        <strong id="revenue">₱0.00</strong>
+                    </article>
+
+                    <article>
+                        <small>Transactions</small>
+                        <strong id="paymentCount">0</strong>
+                    </article>
+
+                </div>
+
+                <input id="paymentSearch" class="search" placeholder="Search member or receipt">
+
+                <article class="panel">
+                    <div id="paymentTable"></div>
+                </article>
+
+            </section>
+
+            <!-- ATTENDANCE -->
+            <section id="attendance" class="page hidden">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">VISIT LOG</small>
+                        <h1>Attendance</h1>
+                        <p class="muted">Record check-ins and view visit history.</p>
+                    </div>
+                </div>
+
+                <article class="panel">
+                    <h2>Member check-in</h2>
+
+                    <form id="checkinForm" class="checkin">
+                        <input id="checkinId" placeholder="Member ID (e.g. GYM-...)" required>
+                        <button class="primary">Check in →</button>
+                    </form>
+                </article>
+
+                <div class="toolbar">
+                    <input id="attendanceSearch" placeholder="Search member">
+                    <input id="attendanceDate" type="date">
+                </div>
+
+                <article class="panel">
+                    <div id="attendanceTable"></div>
+                </article>
+
+            </section>
+
+            <!-- NOTIFICATIONS -->
+            <section id="notifications" class="page hidden">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">MEMBERSHIP STATUS</small>
+                        <h1>Notifications</h1>
+                        <p class="muted">Memberships that need attention.</p>
+                    </div>
+                </div>
+
+                <article class="panel">
+                    <div id="notificationList"></div>
+                </article>
+
+            </section>
+
+            <!-- REPORTS -->
+            <section id="reports" class="page hidden admin-only">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">BUSINESS INSIGHTS</small>
+                        <h1>Reports</h1>
+                        <p class="muted">Membership and payment summary.</p>
+                    </div>
+
+                    <button class="secondary" id="export">↓ Export CSV</button>
+                </div>
+
+                <div class="stats">
+
+                    <article>
+                        <small>Revenue</small>
+                        <strong id="rRevenue">₱0</strong>
+                    </article>
+
+                    <article>
+                        <small>Active members</small>
+                        <strong id="rActive">0</strong>
+                    </article>
+
+                    <article>
+                        <small>Attendance records</small>
+                        <strong id="rVisits">0</strong>
+                    </article>
+
+                    <article>
+                        <small>Renewals</small>
+                        <strong id="rRenewals">0</strong>
+                    </article>
+
+                </div>
+
+                <article class="panel">
+                    <h2>Payment methods</h2>
+                    <div id="breakdown"></div>
+                </article>
+
+            </section>
+
+            <!-- USER ACCOUNTS -->
+            <section id="users" class="page hidden admin-only">
+
+                <div class="intro">
+                    <div>
+                        <small class="eyebrow">ACCESS CONTROL</small>
+                        <h1>User accounts</h1>
+                        <p class="muted">Manage staff and administrator access.</p>
+                    </div>
+
+                    <button class="primary" id="addUser">＋ Add user</button>
+                </div>
+
+                <article class="panel">
+                    <div id="userTable"></div>
+                </article>
+
+            </section>
+
+        </div>
+
+        <footer>FITZONE · GYM MEMBERSHIP MANAGEMENT SYSTEM</footer>
+
+    </main>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal-bg hidden">
+
+    <div class="modal">
+
+        <div class="modal-head">
+            <div>
+                <small class="eyebrow">MANAGE RECORD</small>
+                <h2 id="modalTitle">Add record</h2>
+            </div>
+
+            <button id="closeModal" class="x">×</button>
+        </div>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>
