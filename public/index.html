@@ -23,19 +23,35 @@
             <input id="username" required placeholder="Username" autocomplete="username">
         </label>
 
-        <label>
+               <label>
             Password
-            <input id="password" type="password" required placeholder="Password" autocomplete="current-password">
+            <div class="password-field">
+                <input id="password" type="password" required placeholder="Password" autocomplete="current-password">
+
+                <button type="button" id="togglePassword" class="toggle-password" aria-label="Show password" title="Show password">
+                    <!-- eye (shown when password is hidden) -->
+                    <svg class="eye-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+
+                    <!-- eye with slash (shown when password is visible) -->
+                    <svg class="eye-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94"></path>
+                        <path d="M9.9 4.24A10.9 10.9 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+                        <path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
         </label>
 
         <button class="primary wide">Sign in →</button>
 
         <p id="loginError" class="error"></p>
 
-        <div class="hint">
-            Demo Admin: <b>admin / admin123</b><br>
-            Demo Staff: <b>staff / staff123</b>
-        </div>
+                <p id="loginError" class="error"></p>
+
     </form>
 </div>
 
@@ -84,17 +100,62 @@
             <!-- DASHBOARD -->
             <section id="dashboard" class="page">
 
-                <div class="intro">
-                    <div>
-                        <small class="eyebrow">OVERVIEW</small>
-                        <h1>Good day, <span id="welcome">Admin</span> 👋</h1>
-                        <p class="muted">Here’s what’s happening at your gym today.</p>
-                    </div>
+                
+<div class="intro">
+    <div>
+        <small class="eyebrow">OVERVIEW</small>
+        <h1>Good day, <span id="welcome">Admin</span> 👋</h1>
+        <p class="muted">Here’s what’s happening at your gym today.</p>
+    </div>
 
-                    <button class="primary" id="dashAdd">＋ Add member</button>
-                </div>
+    <button class="primary" id="dashAdd">＋ Add member</button>
+</div>
 
-                <div class="stats">
+<!-- INSERT NEW FITNESS BANNER HERE -->
+<div class="fitness-banner">
+    <div class="fitness-banner-content">
+        <span class="fitness-tag">FITZONE FITNESS CLUB</span>
+        <h2>BUILD YOUR<br>STRONGER SELF.</h2>
+        <p>Stay active. Stay healthy. Keep pushing towards your fitness goals.</p>
+        <span class="banner-caption">YOUR FITNESS JOURNEY STARTS HERE</span>
+    </div>
+</div>
+
+<!-- INSERT FITNESS GALLERY HERE -->
+<div class="fitness-gallery">
+
+    <div class="fitness-card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=85" alt="Gym equipment">
+        <div class="fitness-card-overlay">
+            <span>01</span>
+            <h3>STRENGTH TRAINING</h3>
+            <p>Build strength. Build confidence.</p>
+        </div>
+    </div>
+
+    <div class="fitness-card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=85" alt="Fitness training">
+        <div class="fitness-card-overlay">
+            <span>02</span>
+            <h3>FITNESS & TRAINING</h3>
+            <p>Improve your fitness every day.</p>
+        </div>
+    </div>
+
+    <div class="fitness-card">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=85" alt="Workout">
+        <div class="fitness-card-overlay">
+            <span>03</span>
+            <h3>PERSONAL FITNESS</h3>
+            <p>Make every workout count.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- KEEP THIS EXISTING CODE -->
+<div class="stats">
+
 
                     <article>
                         <small>Total members</small>
@@ -247,7 +308,7 @@
                     <h2>Member check-in</h2>
 
                     <form id="checkinForm" class="checkin">
-                        <input id="checkinId" placeholder="Member ID (e.g. GYM-...)" required>
+                       <input id="checkinId" placeholder="Member ID (e.g. 1 or GYM-0001)" required>
                         <button class="primary">Check in →</button>
                     </form>
                 </article>

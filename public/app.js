@@ -214,6 +214,11 @@ function table(head, rows) {
     `;
 }
 
+
+// Typing only a number (e.g. "1") searches for GYM-0001
+function idQuery(q) {
+    return /^\d+$/.test(q) ? "gym-" + q.padStart(4, "0") : "";
+}
 // MEMBERS
 
 async function members() {
@@ -222,10 +227,14 @@ async function members() {
     const q = ($("memberSearch").value || "").toLowerCase();
     const f = $("memberFilter").value;
 
+      const idq = idQuery(q);
+
     let a = cache.members.filter(m =>
-        (m.full_name + " " + m.id + " " + m.email)
-            .toLowerCase()
-            .includes(q)
+        (idq
+            ? m.id.toLowerCase() === idq
+            : (m.full_name + " " + m.id + " " + m.email)
+                .toLowerCase()
+                .includes(q))
         &&
         (f === "all" || m.current_status === f)
     );
@@ -391,6 +400,7 @@ async function renew(m) {
                 <select name="method">
                     <option>Cash</option>
                     <option>GCash</option>
+                     <option>PayMaya</option>
                     <option>Bank transfer</option>
                     <option>Card</option>
                 </select>
@@ -587,6 +597,7 @@ async function openPayment() {
                 <select name="method">
                     <option>Cash</option>
                     <option>GCash</option>
+                     <option>PayMaya</option>
                     <option>Bank transfer</option>
                     <option>Card</option>
                 </select>
@@ -641,11 +652,14 @@ async function attendance() {
 
     cache.attendance = a;
 
-    const q = ($("attendanceSearch").value || "").toLowerCase();
+        const q = ($("attendanceSearch").value || "").toLowerCase();
     const d = $("attendanceDate").value;
+    const idq = idQuery(q);
 
     const list = a.filter(x =>
-        (x.member_name + " " + x.member_id).toLowerCase().includes(q)
+        (idq
+            ? x.member_id.toLowerCase() === idq
+            : (x.member_name + " " + x.member_id).toLowerCase().includes(q))
         &&
         (!d || x.visit_date === d)
     );
@@ -1131,3 +1145,31 @@ if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js").catch(() => {});
     });
 }
+
+
+
+// SHOW / HIDE PASSWORD (LOGIN)
+
+(function () {
+    const input = $("password");
+    const btn = $("togglePassword");
+
+    if (!input || !btn) return;
+
+    function setVisible(visible) {
+        input.type = visible ? "text" : "password";
+        btn.classList.toggle("showing", visible);
+
+        const label = visible ? "Hide password" : "Show password";
+        btn.setAttribute("aria-label", label);
+        btn.title = label;
+    }
+
+    btn.addEventListener("click", () => {
+        setVisible(input.type === "password");
+        input.focus();
+    });
+
+    // Hide the password again after every login attempt
+    $("loginForm").addEventListener("submit", () => setVisible(false));
+})();

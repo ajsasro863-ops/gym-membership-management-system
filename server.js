@@ -60,6 +60,26 @@ function id(prefix) {
         Math.random().toString(36).slice(2, 6).toUpperCase();
 }
 
+function nextMemberId() {
+    let max = 0;
+
+    all("SELECT id FROM members").forEach(m => {
+        const x = /^GYM-(\d+)$/.exec(m.id);
+        if (x) max = Math.max(max, Number(x[1]));
+    });
+
+    return "GYM-" + String(max + 1).padStart(4, "0");
+}
+
+// Accepts "1", "0001", "gym-1", "GYM-0001"
+function cleanMemberId(input) {
+    const v = String(input || "").trim().toUpperCase();
+    const x = /^(?:GYM-?)?(\d+)$/.exec(v);
+
+    return x ? "GYM-" + x[1].padStart(4, "0") : v;
+}
+
+
 function today() {
     return new Date().toISOString().slice(0, 10);
 }
@@ -237,6 +257,35 @@ function admin(req, res, next) {
 
     persist();
 
+    
+    // CONVERT OLD LONG MEMBER IDS TO SHORT IDS (GYM-0001, GYM-0002, ...)
+    {
+        const oldMembers = all(
+            "SELECT id FROM members ORDER BY created_at ASC, rowid ASC"
+        ).filter(m => !/^GYM-\d{4,}$/.test(m.id));
+
+        if (oldMembers.length) {
+            let max = 0;
+
+            all("SELECT id FROM members").forEach(m => {
+                const x = /^GYM-(\d+)$/.exec(m.id);
+                if (x) max = Math.max(max, Number(x[1]));
+            });
+
+            oldMembers.forEach(m => {
+                max++;
+
+                const newId = "GYM-" + String(max).padStart(4, "0");
+
+                run("UPDATE members SET id=? WHERE id=?", [newId, m.id]);
+                run("UPDATE payments SET member_id=? WHERE member_id=?", [newId, m.id]);
+                run("UPDATE attendance SET member_id=? WHERE member_id=?", [newId, m.id]);
+            });
+
+            persist();
+        }
+    }
+
     // MIDDLEWARE
 
     app.use(helmet({
@@ -370,7 +419,7 @@ function admin(req, res, next) {
             });
         }
 
-        const mid = id("GYM");
+                const mid = nextMemberId();
         const expiry = addDays(
             b.start_date,
             plan.duration_days - 1
@@ -643,7 +692,7 @@ function admin(req, res, next) {
     app.post("/api/attendance", auth, (req, res) => {
         const m = one(
             "SELECT * FROM members WHERE id=?",
-            [String(req.body.member_id || "").trim()]
+                        [cleanMemberId(req.body.member_id)]
         );
 
         if (!m) {
@@ -766,7 +815,7 @@ function admin(req, res, next) {
             "SELECT * FROM attendance ORDER BY visit_date DESC"
         );
 
-        const methods = ["Cash", "GCash", "Bank transfer", "Card"].map(method => ({
+                const methods = ["Cash", "GCash", "PayMaya", "Bank transfer", "Card"].map(method => ({
             method,
             total: payments
                 .filter(p => p.method === method)

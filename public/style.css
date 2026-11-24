@@ -827,3 +827,982 @@ footer {
         padding: 27px 21px;
     }
 }
+
+
+/* =================================
+   FITZONE PREMIUM FITNESS DESIGN
+================================= */
+
+/* LOGIN BACKGROUND */
+.login-wrap {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 10, 10, .88),
+            rgba(8, 10, 10, .45)
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=90");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* LOGIN CARD */
+.login-card {
+    background: rgba(25, 28, 30, .96);
+    border: 1px solid rgba(255, 159, 28, .25);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .65);
+    backdrop-filter: blur(15px);
+}
+
+/* DASHBOARD FITNESS BANNER */
+.fitness-banner {
+    position: relative;
+    min-height: 270px;
+    margin-bottom: 22px;
+    padding: 35px;
+    border-radius: 18px;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10, 12, 12, .96) 0%,
+            rgba(10, 12, 12, .75) 48%,
+            rgba(10, 12, 12, .12) 100%
+        ),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=90");
+
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #3b3530;
+}
+
+.fitness-banner-content {
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+.fitness-tag {
+    display: inline-block;
+    color: #ff9f1c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.fitness-banner h2 {
+    font: 700 38px 'Space Grotesk';
+    line-height: 1.1;
+    margin: 0 0 12px;
+    color: white;
+}
+
+.fitness-banner p {
+    color: #d0d0d0;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 350px;
+}
+
+.banner-caption {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ffb347;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+/* FITNESS PHOTO GALLERY */
+.fitness-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.fitness-card {
+    position: relative;
+    height: 190px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #202020;
+    border: 1px solid #383838;
+}
+
+.fitness-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+}
+
+.fitness-card:hover img {
+    transform: scale(1.07);
+}
+
+.fitness-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent 5%,
+        rgba(0, 0, 0, .9) 100%
+    );
+}
+
+.fitness-card-overlay {
+    position: absolute;
+    z-index: 1;
+    bottom: 15px;
+    left: 15px;
+    right: 10px;
+}
+
+.fitness-card-overlay span {
+    color: #ff9f1c;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.fitness-card-overlay h3 {
+    color: white;
+    font: 700 14px 'Space Grotesk';
+    margin: 5px 0;
+}
+
+.fitness-card-overlay p {
+    color: #d0d0d0;
+    font-size: 10px;
+    margin: 0;
+}
+
+/* IMPROVED DASHBOARD CARDS */
+.stats article {
+    transition: transform .2s, border-color .2s;
+}
+
+.stats article:hover {
+    transform: translateY(-4px);
+    border-color: #ff9f1c;
+}
+
+.panel {
+    transition: border-color .2s;
+}
+
+.panel:hover {
+    border-color: #454545;
+}
+
+/* BUTTON IMPROVEMENTS */
+.primary {
+    transition: .2s ease;
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(255, 159, 28, .2);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media(max-width: 700px) {
+
+    .fitness-banner {
+        min-height: 230px;
+        padding: 22px;
+
+        background-position: center;
+    }
+
+    .fitness-banner h2 {
+        font-size: 29px;
+    }
+
+    .fitness-banner p {
+        font-size: 11px;
+    }
+
+    .fitness-gallery {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .fitness-card {
+        height: 190px;
+    }
+
+    .login-wrap {
+        background-attachment: scroll;
+    }
+}
+
+
+/* ==========================================
+   FITZONE - PREMIUM MEMBERS MANAGEMENT
+========================================== */
+
+/* MEMBERS HEADER */
+#members .intro {
+    position: relative;
+    min-height: 190px;
+    padding: 30px;
+    border-radius: 16px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12,13,15,.97),
+            rgba(12,13,15,.80),
+            rgba(12,13,15,.35)
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1500&q=85");
+
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #38332d;
+}
+
+#members .intro h1 {
+    color: white;
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+#members .intro p {
+    color: #c0c0c0;
+    font-size: 13px;
+}
+
+#members .intro .primary {
+    position: relative;
+    z-index: 2;
+    padding: 14px 20px;
+}
+
+/* MEMBER SEARCH AND FILTER */
+#members .toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 12px;
+    margin: 22px 0;
+    padding: 15px;
+    background: #191b1f;
+    border: 1px solid #303238;
+    border-radius: 13px;
+}
+
+#members .toolbar input {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 15px;
+    background: #111316;
+    border: 1px solid #383c42;
+    border-radius: 9px;
+    color: white;
+    font-size: 13px;
+}
+
+#members .toolbar input::placeholder {
+    color: #777f89;
+}
+
+#members .toolbar select {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    background: #111316;
+    border: 1px solid #383c42;
+    border-radius: 9px;
+    color: #eee;
+    cursor: pointer;
+}
+
+/* MEMBER TABLE CONTAINER */
+#members > .panel {
+    background: #191b1f;
+    border: 1px solid #303238;
+    border-radius: 14px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#members .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* TABLE HEADER */
+#members table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#members table th {
+    padding: 17px 14px;
+    background: #202226;
+    color: #ffad45;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #383c42;
+}
+
+#members table td {
+    padding: 17px 14px;
+    color: #d5d5d5;
+    font-size: 12px;
+    border-bottom: 1px solid #2b2e33;
+    vertical-align: middle;
+}
+
+#members table tbody tr {
+    transition: background .2s ease;
+}
+
+#members table tbody tr:hover {
+    background: rgba(255,152,31,.045);
+}
+
+#members table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* MEMBER NAME */
+#members table td:first-child {
+    min-width: 190px;
+}
+
+#members table td:first-child b {
+    display: block;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#members table td:first-child small {
+    display: block;
+    color: #858d96;
+    font-size: 10px;
+}
+
+/* MEMBERSHIP STATUS */
+#members .pill {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+#members .pill.active {
+    color: #62dfa4;
+    background: rgba(45,190,119,.14);
+    border: 1px solid rgba(45,190,119,.25);
+}
+
+#members .pill.expired {
+    color: #ff8585;
+    background: rgba(255,85,85,.13);
+    border: 1px solid rgba(255,85,85,.22);
+}
+
+#members .pill.expiring {
+    color: #ffca79;
+    background: rgba(255,171,55,.13);
+    border: 1px solid rgba(255,171,55,.22);
+}
+
+/* ACTION BUTTONS */
+#members .actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#members .action {
+    padding: 7px 11px;
+    border: 1px solid #41464e;
+    border-radius: 7px;
+    background: #282b30;
+    color: #e8e8e8;
+    font-size: 10px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+#members .action:hover {
+    background: #383c42;
+    border-color: #ff9f1c;
+    color: #ffb347;
+}
+
+/* EMPTY MEMBERS */
+#members .empty {
+    padding: 55px 20px;
+    color: #969da6;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* ADD MEMBER BUTTON */
+#members .intro .primary {
+    box-shadow: 0 5px 20px rgba(255,152,31,.15);
+}
+
+#members .intro .primary:hover {
+    background: #ffb347;
+    transform: translateY(-2px);
+}
+
+/* MEMBERS MOBILE VIEW */
+@media(max-width: 700px) {
+
+    #members .intro {
+        min-height: 175px;
+        padding: 22px;
+        align-items: flex-start;
+        flex-direction: column;
+        background-position: center;
+    }
+
+    #members .intro h1 {
+        font-size: 27px;
+    }
+
+    #members .intro .primary {
+        width: 100%;
+    }
+
+    #members .toolbar {
+        grid-template-columns: 1fr;
+        padding: 11px;
+    }
+
+    #members > .panel {
+        padding: 7px;
+    }
+
+    #members table {
+        min-width: 750px;
+    }
+
+}
+
+
+/* ==========================================
+   FITZONE - PREMIUM MEMBERSHIP PLANS
+========================================== */
+
+/* PLANS PAGE HEADER */
+#plans > .intro {
+    min-height: 190px;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10,11,13,.96),
+            rgba(10,11,13,.76),
+            rgba(10,11,13,.25)
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1500&q=85");
+
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #38332d;
+    margin-bottom: 28px;
+}
+
+#plans .intro h1 {
+    color: white;
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+#plans .intro p {
+    color: #c1c1c1;
+    font-size: 13px;
+}
+
+/* ADD PLAN BUTTON */
+#plans #addPlan {
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-weight: 800;
+}
+
+/* PLANS GRID */
+#plans .plans {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+/* PLAN CARD */
+#plans .plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 290px;
+    padding: 26px 23px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        145deg,
+        #22252a,
+        #17191d
+    );
+
+    border: 1px solid #363a40;
+    border-radius: 16px;
+
+    transition: transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+}
+
+/* CARD HOVER */
+#plans .plan:hover {
+    transform: translateY(-6px);
+    border-color: #d88930;
+    box-shadow: 0 15px 35px rgba(0,0,0,.28);
+}
+
+/* PLAN LABEL */
+#plans .plan .eyebrow {
+    color: #ffab42;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+/* PLAN NAME */
+#plans .plan h2 {
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0 14px;
+}
+
+/* PLAN PRICE */
+#plans .plan strong {
+    color: #ffad45;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* PLAN DETAILS */
+#plans .plan p {
+    color: #b4bac2;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 6px 0;
+}
+
+/* PLAN DURATION */
+#plans .plan p:first-of-type {
+    color: #ffbf73;
+    font-weight: 700;
+}
+
+/* PLAN ACTIONS */
+#plans .plan .actions {
+    display: flex;
+    gap: 9px;
+    margin-top: auto;
+    padding-top: 22px;
+}
+
+/* EDIT BUTTON */
+#plans .plan .action {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #474c53;
+    border-radius: 8px;
+    background: #292d32;
+    color: #eee;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+#plans .plan .action:hover {
+    background: rgba(255,152,31,.15);
+    border-color: #ff981f;
+    color: #ffb347;
+}
+
+/* DELETE BUTTON */
+#plans .plan .action[data-plan-delete] {
+    color: #ff8585;
+}
+
+#plans .plan .action[data-plan-delete]:hover {
+    background: rgba(255,70,70,.13);
+    border-color: #e65b5b;
+}
+
+/* FEATURED SECOND CARD */
+#plans .plan:nth-child(2) {
+    border: 1px solid #bd792d;
+    background: linear-gradient(
+        145deg,
+        #30251a,
+        #1b1b1d
+    );
+}
+
+#plans .plan:nth-child(2)::before {
+    content: "FEATURED";
+    position: absolute;
+    top: 16px;
+    right: -29px;
+    width: 115px;
+    padding: 7px 0;
+    text-align: center;
+    transform: rotate(45deg);
+    background: #ff981f;
+    color: #171717;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+/* EMPTY STATE */
+#plans .empty {
+    padding: 60px 20px;
+    text-align: center;
+    background: #191b1f;
+    border: 1px dashed #444950;
+    border-radius: 14px;
+    color: #a1a7af;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media(max-width: 950px) {
+    #plans .plans {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(max-width: 600px) {
+
+    #plans > .intro {
+        min-height: 180px;
+        padding: 22px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #plans .intro h1 {
+        font-size: 27px;
+    }
+
+    #plans #addPlan {
+        width: 100%;
+    }
+
+    #plans .plans {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    #plans .plan {
+        min-height: 260px;
+        padding: 23px;
+    }
+
+    #plans .plan strong {
+        font-size: 32px;
+    }
+}
+
+
+
+/* ==========================================================
+   FITZONE - FULL PREMIUM HERO HEADERS (BIGGER + FULL PHOTO)
+   Payments, Attendance, Notifications, Reports, User Accounts
+========================================================== */
+
+#payments > .intro,
+#attendance > .intro,
+#notifications > .intro,
+#reports > .intro,
+#users > .intro {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 300px;
+    padding: 40px 45px;
+    margin-bottom: 26px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #3b3530;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .38);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Orange glow on the right side */
+#payments > .intro::after,
+#attendance > .intro::after,
+#notifications > .intro::after,
+#reports > .intro::after,
+#users > .intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 88% 20%,
+        rgba(255, 159, 28, .22),
+        transparent 45%
+    );
+}
+
+/* Orange line at the bottom */
+#payments > .intro::before,
+#attendance > .intro::before,
+#notifications > .intro::before,
+#reports > .intro::before,
+#users > .intro::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 3;
+    background: linear-gradient(90deg, #ff9f1c, #ffcb6b 45%, transparent);
+}
+
+/* Keep text and buttons above the glow */
+#payments > .intro > *,
+#attendance > .intro > *,
+#notifications > .intro > *,
+#reports > .intro > *,
+#users > .intro > * {
+    position: relative;
+    z-index: 2;
+}
+
+#payments > .intro .eyebrow,
+#attendance > .intro .eyebrow,
+#notifications > .intro .eyebrow,
+#reports > .intro .eyebrow,
+#users > .intro .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+#payments > .intro h1,
+#attendance > .intro h1,
+#notifications > .intro h1,
+#reports > .intro h1,
+#users > .intro h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 46px;
+    line-height: 1.05;
+    color: #fff;
+    margin: 14px 0 12px;
+    text-shadow: 0 4px 22px rgba(0, 0, 0, .55);
+}
+
+#payments > .intro p,
+#attendance > .intro p,
+#notifications > .intro p,
+#reports > .intro p,
+#users > .intro p {
+    max-width: 420px;
+    color: #d3d3d3;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* PAYMENTS - barbell */
+#payments > .intro {
+    background-image:
+        linear-gradient(90deg, rgba(8,10,10,.96) 0%, rgba(8,10,10,.72) 45%, rgba(8,10,10,.12) 100%),
+        linear-gradient(0deg, rgba(8,10,10,.55), transparent 45%),
+        url("https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=2000&q=90");
+    background-position: center;
+}
+
+/* ATTENDANCE - dumbbells */
+#attendance > .intro {
+    background-image:
+        linear-gradient(90deg, rgba(8,10,10,.96) 0%, rgba(8,10,10,.72) 45%, rgba(8,10,10,.12) 100%),
+        linear-gradient(0deg, rgba(8,10,10,.55), transparent 45%),
+        url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=2000&q=90");
+    background-position: center;
+}
+
+/* NOTIFICATIONS - weight training */
+#notifications > .intro {
+    background-image:
+        linear-gradient(90deg, rgba(8,10,10,.96) 0%, rgba(8,10,10,.74) 45%, rgba(8,10,10,.15) 100%),
+        linear-gradient(0deg, rgba(8,10,10,.55), transparent 45%),
+        url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=2000&q=90");
+    background-position: center;
+}
+
+/* REPORTS - gym equipment */
+#reports > .intro {
+    background-image:
+        linear-gradient(90deg, rgba(8,10,10,.96) 0%, rgba(8,10,10,.72) 45%, rgba(8,10,10,.12) 100%),
+        linear-gradient(0deg, rgba(8,10,10,.55), transparent 45%),
+        url("https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=2000&q=90");
+    background-position: center;
+}
+
+/* USER ACCOUNTS - dumbbell rack */
+#users > .intro {
+    background-image:
+        linear-gradient(90deg, rgba(8,10,10,.96) 0%, rgba(8,10,10,.72) 45%, rgba(8,10,10,.12) 100%),
+        linear-gradient(0deg, rgba(8,10,10,.55), transparent 45%),
+        url("https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=2000&q=90");
+    background-position: center;
+}
+
+/* Tablet */
+@media(max-width: 950px) {
+
+    #payments > .intro,
+    #attendance > .intro,
+    #notifications > .intro,
+    #reports > .intro,
+    #users > .intro {
+        min-height: 260px;
+        padding: 32px;
+    }
+
+    #payments > .intro h1,
+    #attendance > .intro h1,
+    #notifications > .intro h1,
+    #reports > .intro h1,
+    #users > .intro h1 {
+        font-size: 38px;
+    }
+}
+
+/* Mobile */
+@media(max-width: 700px) {
+
+    #payments > .intro,
+    #attendance > .intro,
+    #notifications > .intro,
+    #reports > .intro,
+    #users > .intro {
+        min-height: 250px;
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        gap: 16px;
+        border-radius: 16px;
+    }
+
+    #payments > .intro h1,
+    #attendance > .intro h1,
+    #notifications > .intro h1,
+    #reports > .intro h1,
+    #users > .intro h1 {
+        font-size: 30px;
+    }
+
+    #payments > .intro p,
+    #attendance > .intro p,
+    #notifications > .intro p,
+    #reports > .intro p,
+    #users > .intro p {
+        font-size: 12px;
+    }
+}
+
+
+
+/* ==========================================
+   LOGIN - SHOW / HIDE PASSWORD
+========================================== */
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: #8a9298;
+    transition: color .2s ease, background .2s ease;
+}
+
+.toggle-password:hover {
+    color: #ff9f1c;
+    background: rgba(255, 159, 28, .1);
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid #ff9f1c;
+}
+
+/* Default: eye icon shown, slashed eye hidden */
+.toggle-password .eye-off {
+    display: none;
+}
+
+/* When password is visible: swap icons and highlight */
+.toggle-password.showing {
+    color: #ff9f1c;
+}
+
+.toggle-password.showing .eye-on {
+    display: none;
+}
+
+.toggle-password.showing .eye-off {
+    display: block;
+}
